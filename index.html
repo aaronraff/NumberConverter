@@ -1,7 +1,7 @@
 <html>
 
 <head>
-  <title>Binary Converter</title>
+  <title>Number Converter</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -9,23 +9,29 @@
   <h1>Number Converter</h1>
 
   <div id="form">
-    <input type="text" id="decimalNumber" value="">
-    <button type="button" value="Submit" onclick="convertToBinaryFromDecimal();">Convert</button>
-  </div>
+    <input id="numberInput" type="text" value="">
+    <button type="button" value="Submit" onclick="runConversion();">Convert</button>
+
+    <div id="radioOptions">
+      <input type="radio" id="binaryRadio" name="base" value="Binary" checked onclick="detectBase(this);">
+        <label for="binaryRadio">Binary</label>
+      <input type="radio" id="hexRadio" name="base" value="Hexadecimal" onclick="detectBase(this);">
+        <label for="hexRadio">Hexadecimal</label>
+    </div>
+  </div> <!-- END OF FORM  -->
 
   <br>
 
   <div class="container">
 
     <div id="results">
-      <h3>Binary Conversion:</h3>
+      <h3 id="typeOfConversion">Binary Conversion:</h3>
       <span id="binaryOutput"></span>
     </div>
 
     <div id="github">
-      <h3>Find this project on Github</h3>
+      <h3>Find this project on <a href="https://github.com/aaronraff/NumberConverter">Github</a></h3>
 
-      
     </div>
 
   </div> <!-- END OF CONTAINER  -->

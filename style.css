@@ -19,12 +19,38 @@ body #form {
   text-align: center;
 }
 
-body input {
+body input #numberInput {
   width: 200px;
 }
 
 body button, input {
   height: 30px;
+}
+
+body #radioOptions {
+  display: block;
+}
+
+input[type=radio] {
+  display: none;
+}
+
+input[type=radio] + label {
+  background-color: #BDBDBD;
+  display: inline-block;
+  margin: 20px 15px 0px 15px;
+  padding: 5px 20px;
+}
+
+input[type=radio] + label:hover {
+  background-color: #E0E0E0;
+  cursor: pointer;
+}
+
+input[type=radio]:checked + label {
+  background-color: #E0E0E0;
+  background-image: none;
+  outline: 3px solid #1976D2;
 }
 
 body .container {
@@ -50,4 +76,9 @@ body #github {
 body h3 {
   display: inline-block;
   margin-right: 10px;
+}
+
+body #github a {
+  color: #2196F3;
+  text-decoration: none;
 }
