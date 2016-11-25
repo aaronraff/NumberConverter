@@ -3,11 +3,14 @@ var currentBase = "Binary";
 function detectBase(selectedRadio) {
   document.getElementById('typeOfConversion').innerHTML = selectedRadio.value + " Conversion:";
 
+//Changes the value when the button is changed after conversion
   if(currentBase != selectedRadio.value) {
     if(selectedRadio.value == "Binary")
       convertToBinaryFromDecimal();
     else if(selectedRadio.value == "Hexadecimal")
       convertToHexFromDecimal();
+    else if(selectedRadio.value == "Octal")
+      convertToOctalFromDecimal();
   }
 }
 
@@ -17,6 +20,9 @@ function runConversion() {
   }
   else if(document.getElementById('typeOfConversion').innerText == "Hexadecimal Conversion:") {
     convertToHexFromDecimal();
+  }
+  else if(document.getElementById('typeOfConversion').innerText == "Octal Conversion:") {
+    convertToOctalFromDecimal();
   }
 }
 
@@ -30,7 +36,7 @@ function convertToBinaryFromDecimal() {
   //console.log(decimal); //check to make sure number is read in correctly
 
   if (isNaN(decimal)) {
-    document.getElementById('binaryOutput').innerHTML = "Please input a valid integer.";
+    document.getElementById('conversionOutput').innerHTML = "Please input a valid integer.";
     //console.log(decimal); //check to make sure number is read in correctly
   }
   else {
@@ -50,10 +56,46 @@ function convertToBinaryFromDecimal() {
       i++;
     }
 
-    document.getElementById('binaryOutput').innerHTML = print(binaryString);
+    document.getElementById('conversionOutput').innerHTML = print(binaryString);
   }
 
   currentBase = "Binary";
+}
+
+function convertToOctalFromDecimal() {
+  var remainder;
+  var nextNum;
+  var octalString = new Array();
+
+  var decimal = document.getElementById('numberInput').value;
+  decimal = parseInt(decimal);
+  //console.log(decimal); //check to make sure number is read in correctly
+
+  if (isNaN(decimal)) {
+    document.getElementById('conversionOutput').innerHTML = "Please input a valid integer.";
+    //console.log(decimal); //check to make sure number is read in correctly
+  }
+  else {
+    nextNum = decimal;
+    var i = 0;
+
+    //Checks to see if the inputed decimal number is 0.
+    if(nextNum == 0) {
+      octalString[0] = 0;
+    }
+
+    while(nextNum > 0) {
+      remainder = nextNum % 8;
+      nextNum /= 8;
+      nextNum = Math.floor(nextNum);
+      octalString[i] = remainder;
+      i++;
+    }
+
+    document.getElementById('conversionOutput').innerHTML = print(octalString);
+  }
+
+  currentBase = "Octal";
 }
 
 function convertToHexFromDecimal() {
@@ -66,7 +108,7 @@ function convertToHexFromDecimal() {
   //console.log(decimal); //check to make sure number is read in correctly
 
   if (isNaN(decimal)) {
-    document.getElementById('binaryOutput').innerHTML = "Please input a valid integer.";
+    document.getElementById('conversionOutput').innerHTML = "Please input a valid integer.";
     //console.log(decimal); //check to make sure number is read in correctly
   }
   else {
@@ -108,7 +150,7 @@ function convertToHexFromDecimal() {
       i++;
     }
 
-    document.getElementById('binaryOutput').innerHTML = print(hexString);
+    document.getElementById('conversionOutput').innerHTML = print(hexString);
   }
 
   currentBase = "hexadecimal";
